@@ -1,0 +1,55 @@
+<!-- checkout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho Intergaláctico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Carrinho Intergaláctico</h1>
+    <p>Preencha suas informações para finalizar a compra:</p>
+
+    <form id="checkoutForm">
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" required>
+        <button type="submit">Comprar</button>
+    </form>
+
+    <div id="addressInfo"></div>
+
+    <script>
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const cep = document.getElementById('cep').value;
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => {
+                    let addressInfo = document.getElementById('addressInfo');
+                    addressInfo.innerHTML = `
+                        <h3>Detalhes do Endereço:</h3>
+                        <p>CEP: ${data.cep}</p>
+                        <p>Logradouro: ${data.logradouro}</p>
+                        <p>Bairro: ${data.bairro}</p>
+                        <p>Cidade: ${data.localidade}</p>
+                        <p>Estado: ${data.uf}</p>
+                    `;
+
+                    // Adicionar botão para finalizar a compra
+                    const checkoutButton = document.createElement('button');
+                    checkoutButton.textContent = 'Finalizar Compra';
+                    checkoutButton.onclick = function() {
+                        alert('Muito bem! Compra finalizada!');
+                    };
+                    addressInfo.appendChild(checkoutButton);
+                })
+                .catch(error => {
+                    let addressInfo = document.getElementById('addressInfo');
+                    addressInfo.innerHTML = `<p>CEP inválido. Por favor, verifique o CEP digitado.</p>`;
+                });
+        });
+    </script>
+</body>
+</html>

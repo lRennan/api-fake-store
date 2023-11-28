@@ -1,0 +1,41 @@
+<!-- produto.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>A Jornada de um Único Produto</h1>
+    <p>Aqui estão os detalhes do produto escolhido:</p>
+
+    <div id="productDetails" class="product-details"></div>
+
+    <script>
+        // Obter o ID do produto da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        // Obter dados do produto específico da API e exibir na página
+        fetch(`https://fakestoreapi.com/products/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+                let productDetails = document.getElementById('productDetails');
+                let productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+
+                // Adicionando imagem do produto (substitua 'image' pelo campo correto da API)
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.title}" style="width: 50%; height: auto; margin-bottom: 20px;">
+                    <h2>${product.title}</h2>
+                    <p>Preço: $${product.price}</p>
+                    <p>Descrição: ${product.description}</p>
+                    <button onclick="window.location.href='checkout.html?id=${product.id}'">Comprar Agora</button>
+                `;
+                productDetails.appendChild(productDiv);
+            });
+    </script>
+</body>
+</html>

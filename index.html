@@ -1,0 +1,38 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Store - Página Inicial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Exploração na Base de Produtos</h1>
+    <p>Na página inicial, você encontrará uma variedade de produtos de todas as partes da galáxia. Sua tarefa é criar uma página inicial (index.html) que consome a Fake Store API e exibe uma lista diversificada de produtos para atrair compradores de todos os cantos do universo.</p>
+    <div id="productList" class="product-list"></div>
+
+    <script>
+        // Obter dados da API e exibir na página inicial
+        fetch('https://fakestoreapi.com/products')
+            .then(response => response.json())
+            .then(data => {
+                let productList = document.getElementById('productList');
+                data.forEach(product => {
+                    let productDiv = document.createElement('div');
+                    productDiv.classList.add('product');
+
+                    // Adicionando imagem do produto (substitua 'image' pelo campo correto da API)
+                    productDiv.innerHTML = `
+                        <img src="${product.image}" alt="${product.title}" style="width: 100%; height: auto;">
+                        <h2>${product.title}</h2>
+                        <p>Preço: $${product.price}</p>
+                        <p>Descrição: ${product.description}</p>
+                        <a href="produto.html?id=${product.id}">Mais informações</a>
+                    `;
+                    productList.appendChild(productDiv);
+                });
+            });
+    </script>
+</body>
+</html>

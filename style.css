@@ -1,0 +1,118 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+/* Estilos para links */
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* Estilos específicos para as páginas */
+
+/* index.html */
+#productList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#productList > div {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #fff;
+}
+
+/* produto.html */
+#productDetails {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+#productDetails button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* checkout.html */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"] {
+    width: calc(100% - 10px);
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* styles.css */
+
+/* ... (seus estilos existentes) ... */
+
+/* Estilos para o botão 'Finalizar Compra' na página de checkout */
+#addressInfo button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#addressInfo button:hover {
+    background-color: #218838;
+}
